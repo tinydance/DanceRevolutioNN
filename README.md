@@ -1,7 +1,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Python 3.7](https://img.shields.io/badge/python-3.7-green.svg)
 ## Dance Revolution: Long Sequence Dance Generation with Music via Curriculum Learning
-**\*\*\*\*\* June 19, 2020 **\*\*\*\*\* </br>
+**\*\*\*\*\* June 19, 2020 **\*\*\*\*\*
 The code and data are going through the internal review and will be released later!
 
 **\*\*\*\*\* New August 24, 2020: the release of code and data \*\*\*\*\***
