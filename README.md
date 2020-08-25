@@ -4,7 +4,7 @@
 **\*\*\*\*\*\*\*\*\* June 19, 2020 \*\*\*\*\*\*\*\*\*** <br>
 The code and data are going through the internal review and will be released later!
 
-**\*\*\*\*\*\*\*\*\* New August 24, 2020: the release of code and data \*\*\*\*\*\*\*\*\***
+**\*\*\*\*\*\*\*\*\* New August 24, 2020: the release of code \*\*\*\*\*\*\*\*\***
 
 ### Introduction
 This repo is the PyTorch implementation of "Dance Revolution: Long Sequence Dance Generation with Music via Curriculum Learning". Our proposed approach significantly outperforms the existing methods and achieves the state-of-art performance in extensive experiments. It can generate creative long dance sequences, e.g., about <strong>1-minute length under 15 FPS</strong>, from the input music clips, which are smooth, natural-looking, diverse, style-consistent and beat-matching with the music. This techique can be used to drive various 3D character models by 3D reconstruction and animation driving, and has the great potential for the virtual ads video generation on social medias like TikTok.
@@ -19,7 +19,7 @@ Dance Revolution: Long Sequence Dance Generation with Music via Curriculum Learn
 - PyTorch 0.4.1
 
 ### Installation and Dataset
-Please download the dataset of dance videos from [here](https://drive.google.com/file/d/16LTR3R16Mkb_hK81r0JsSscUGLyRFG3o/view?usp=sharing) and install [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) for the human pose extraction.
+Please install [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) for the human pose extraction.
 
 ### Generated Example Videos
 - Ballet style
