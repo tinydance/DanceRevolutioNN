@@ -4,6 +4,10 @@
 **\*\*\*\*\*\*\*\*\* June 19, 2020 \*\*\*\*\*\*\*\*\*** <br>
 The code and data are going through the internal review and will be released later!
 
+**\*\*\*\*\*\*\*\*\* August 26, 2020 \*\*\*\*\*\*\*\*\*** <br>
+The dataset is still going through the internal review, please wait.
+
+
 ### Introduction
 This repo is the PyTorch implementation of "Dance Revolution: Long Sequence Dance Generation with Music via Curriculum Learning". Our proposed approach significantly outperforms the existing methods and achieves the state-of-art performance in extensive experiments. It can generate creative long dance sequences, e.g., about <strong>1-minute length under 15 FPS</strong>, from the input music clips, which are smooth, natural-looking, diverse, style-consistent and beat-matching with the music. This techique can be used to drive various 3D character models by 3D reconstruction and animation driving, and has the great potential for the virtual ads video generation on social medias like TikTok.
 
