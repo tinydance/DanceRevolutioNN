@@ -21,7 +21,7 @@ Dance Revolution: Long Sequence Dance Generation with Music via Curriculum Learn
 - PyTorch 0.4.1
 
 ### Dataset and Installation
-- We released dance pose data and corresponding audio data into [here](https://drive.google.com/file/d/1FGGF7P_gR8ssfewhVogskvDyu6Gb6Dr8/view?usp=sharing). The pose sequences are extracted from dance videos with 30FPS. 
+- We released the dance pose data and the corresponding audio data into [here](https://drive.google.com/file/d/1FGGF7P_gR8ssfewhVogskvDyu6Gb6Dr8/view?usp=sharing). The pose sequences are extracted from dance videos with 30FPS while the audio data is m4a format.
 
 - If you plan to training the model with your own dance data, please install [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) for the human pose extraction.
 
