@@ -8,7 +8,7 @@ The code and data are going through the internal review and will be released lat
 The dataset is still going through the internal review, please wait.
 
 **\*\*\*\*\*\*\*\*\* September 7, 2020 \*\*\*\*\*\*\*\*\*** <br>
-The code & data are released!
+The code & pose data are released!
 
 
 ### Introduction
