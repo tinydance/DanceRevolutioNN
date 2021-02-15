@@ -5,6 +5,7 @@ from torch.utils.data import Dataset
 
 
 def paired_collate_fn(insts):
+    print("test4")
     src_seq, tgt_seq = list(zip(*insts))
     src_pos = np.array([[pos_i + 1 for pos_i, v_i in enumerate(inst)] for inst in src_seq])
 
@@ -17,11 +18,13 @@ def paired_collate_fn(insts):
 
 class DanceDataset(Dataset):
     def __init__(self, musics, dances=None):
+        print("test3")
         if dances is not None:
             assert (len(musics) == len(dances)), \
                 'the number of dances should be equal to the number of musics'
         self.musics = musics
         self.dances = dances
+        print("test5")
 
     def __len__(self):
         return len(self.musics)
