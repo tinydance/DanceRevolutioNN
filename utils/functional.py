@@ -39,7 +39,7 @@ def printer(args):
         print(arg, '->', getattr(args, arg))
 
 
-def load_data(data_dir, interval=900, data_type='2D'):
+def load_data(data_dir, interval=300, data_type='2D'):
     music_data, dance_data = [], []
     fnames = sorted(os.listdir(data_dir))
     # print(fnames)

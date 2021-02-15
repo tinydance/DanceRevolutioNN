@@ -1,10 +1,11 @@
+print("Hi this is the test")
 import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from utils.pose import BOS_POSE
-from longformer.longformer import LongformerSelfAttention, LongformerConfig
-
+from longformer.longformers import LongformerSelfAttention, LongformerConfig
+print("after torch")
 
 def get_sinusoid_encoding_table(n_position, d_hid, padding_idx=None):
     """ Sinusoid position encoding table """
