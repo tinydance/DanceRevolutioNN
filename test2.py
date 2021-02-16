@@ -5,7 +5,7 @@ from tqdm import tqdm
 import numpy as np
 import torch
 import torch.utils.data
-from dataset import DanceDataset,DanceDataset_Test, paired_collate_fn
+from dataset import DanceDataset,DanceDataset_Test, paired_collate_fn_test
 from utils.functional import str2bool, load_data, load_data_test
 from generator import Generator
 from PIL import Image
@@ -146,7 +146,7 @@ def main():
     test_loader = torch.utils.data.DataLoader(
         DanceDataset_Test(music_data),
         batch_size=args.batch_size,
-        collate_fn=paired_collate_fn
+        collate_fn=paired_collate_fn_test
     )
 
     generator = Generator(args.model, device)

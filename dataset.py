@@ -5,7 +5,6 @@ from torch.utils.data import Dataset
 
 
 def paired_collate_fn(insts):
-    print("test4")
     src_seq, tgt_seq = list(zip(*insts))
     src_pos = np.array([[pos_i + 1 for pos_i, v_i in enumerate(inst)] for inst in src_seq])
 
@@ -14,6 +13,15 @@ def paired_collate_fn(insts):
     tgt_seq = torch.FloatTensor(tgt_seq)
 
     return src_seq, src_pos, tgt_seq
+
+def paired_collate_fn_test(insts):
+    src_seq = list(insts)
+    src_pos = np.array([[pos_i + 1 for pos_i, v_i in enumerate(inst)] for inst in src_seq])
+
+    src_seq = torch.FloatTensor(src_seq)
+    src_pos = torch.LongTensor(src_pos)
+
+    return src_seq, src_pos
 
 
 class DanceDataset(Dataset):
