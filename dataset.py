@@ -18,13 +18,11 @@ def paired_collate_fn(insts):
 
 class DanceDataset(Dataset):
     def __init__(self, musics, dances=None):
-        print("test3")
         if dances is not None:
             assert (len(musics) == len(dances)), \
                 'the number of dances should be equal to the number of musics'
         self.musics = musics
         self.dances = dances
-        print("test5")
 
     def __len__(self):
         return len(self.musics)
@@ -34,3 +32,15 @@ class DanceDataset(Dataset):
             return self.musics[index], self.dances[index]
         else:
             return self.musics[index]
+
+class DanceDataset_Test(Dataset):
+    def __init__(self, musics):
+        self.musics = musics
+
+    def __len__(self):
+        return len(self.musics)
+
+    def __getitem__(self, index):
+        return self.musics[index]
+
+

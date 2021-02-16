@@ -73,6 +73,29 @@ def load_data(data_dir, interval=300, data_type='2D'):
 
     return music_data, dance_data, [fn.replace('.json', '') for fn in fnames]
 
+def load_data_test(data_dir, interval=300, data_type='2D'):
+    music_data = []
+    fnames = sorted(os.listdir(data_dir))
+    # print(fnames)
+    # fnames = fnames[:10]  # For debug
+    if ".ipynb_checkpoints" in fnames:
+        fnames.remove(".ipynb_checkpoints")
+    for fname in fnames:
+        path = os.path.join(data_dir, fname)
+        with open(path) as f:
+            sample_dict = json.loads(f.read())
+            np_music = np.array(sample_dict['music_array'])
+            if interval is not None:
+                seq_len, dim = np_music.shape
+                for i in range(0, seq_len, interval):
+                    music_sub_seq = np_music[i: i + interval]
+                    if len(music_sub_seq) == interval:
+                        music_data.append(music_sub_seq)
+            else:
+                music_data.append(np_music)
+
+    return music_data, [fn.replace('.json', '') for fn in fnames]
+
 
 def str2bool(v):
     if v.lower() in ('yes', 'true', 't', 'y', '1'):
