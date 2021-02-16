@@ -154,7 +154,7 @@ def main():
     results = []
     for batch in tqdm(test_loader, desc='Generating dance poses'):
         # Prepare data
-        src_seq, src_pos, _ = map(lambda x: x.to(device), batch)
+        src_seq, src_pos = map(lambda x: x.to(device), batch)
         pose_seq = generator.generate(src_seq, src_pos)
         results.append(pose_seq)
 
