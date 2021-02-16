@@ -9,7 +9,7 @@ import numpy as np
 from extractor import FeatureExtractor
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--input_audio_dir', type=str, default='data/test_audio/')
+parser.add_argument('--input_audio_dir', type=str, default='data/audio/ballet_1min/')
 parser.add_argument('--test_dir', type=str, default='data/test/')
 parser.add_argument('--sampling_rate', type=int, default=15360)
 args = parser.parse_args()
@@ -101,7 +101,8 @@ def save(args, musics):
 
     print('---------- test data ----------')
     for idx,fname in enumerate(fnames):
-        with open(os.path.join(args.train_dir, f'{fname}.json'), 'w') as f:
+        fn = os.path.splitext(fname)[0]
+        with open(os.path.join(args.test_dir, f'{fn}.json'), 'w') as f:
             sample_dict = {
                 'id': fnames[idx],
                 'music_array': musics[idx],

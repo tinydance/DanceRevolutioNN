@@ -23,7 +23,7 @@ hand_right_keypoints_num = 21
 def get_args():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--input_dir', type=str, default='data/valid_1min')
+    parser.add_argument('--input_dir', type=str, default='data/test/')
     parser.add_argument('--data_type', type=str, default='2D', help='the type of pose data')
     parser.add_argument('--model', type=str, metavar='PATH', default='checkpoints/epoch_3000.pt')
     parser.add_argument('--json_dir', metavar='PATH', default='outputs/',
