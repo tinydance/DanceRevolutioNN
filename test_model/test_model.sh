@@ -13,10 +13,12 @@ fps="15"
 ##########################
 
 #make dirs if they don't exist
+mkdir -p edited_audio
 mkdir -p test_audio
 mkdir -p test_output
-test_audio="${work_dir}/test_model/test_audio"
-test_output="${work_dir}/test_model/test_output"
+edited_audio="${work_dir}test_model/edited_audio"
+test_audio="${work_dir}test_model/test_audio"
+test_output="${work_dir}test_model/test_output"
 
 
 # Go to work dir
@@ -36,18 +38,21 @@ do
 	#   *set video duration to $duration seconds
 	#   *output into a filename_mod.mp4 file 
 	filename="${audio##*/}"
-	edited_audio="${test_audio}/${filename%.*}.m4a"
-	echo "$edited_audio"
+	new_audio="${edited_audio}/${filename%.*}.m4a"
 	ffmpeg 	-n\
 		-loglevel 24\
 		-i "${audio}"\
 		-r "${fps}"\
  		-t "${duration}"\
-		"${edited_audio}"
+		"${new_audio}"
 done
 
 ###############
 ## Run Model ##
 ###############
+cd ${work_dir}
+python prepro_test.py --input_audio_dir "${edited_audio}" \
+	--test_dir "${test_audio}"
+sbatch test_model/slurm.sh
 
 exit
