@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #SBATCH --job-name=DANCE_REVOLUTION
-#SBATCH --output=/zooper2/tinydancer/DanceRevolution/prepro_log.txt
+#SBATCH --output=/zooper2/tinydancer/DanceRevolution/prepro_log/full_train1.txt
 #SBATCH --gres=gpu:1
 #SBATCH --ntasks=1
 #SBATCH --gres-flags=enforce-binding
@@ -25,5 +25,5 @@ export PATH="$PATH:/usr/local/cuda-10.0/bin"
 export LD_LIBRARY_PATH="/usr/local/cuda-10.0/lib64"
 export PATH="$PATH:/usr/local/bin/conda"
 
-/zooper2/tinydancer/DanceRevolution/bin/python prepro.py
+/zooper1/tinydancer/DanceRevolution/bin/python prepro.py
 

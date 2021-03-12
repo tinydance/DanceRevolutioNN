@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #SBATCH --job-name=DANCE_REVOLUTION
-#SBATCH --output=/zooper2/tinydancer/DanceRevolution/pretraining_test_test_log.txt
+#SBATCH --output=/zooper2/tinydancer/DanceRevolution/logs/0217_hiphop_test_log.txt
 #SBATCH --gres=gpu:1
 #SBATCH --ntasks=1
 #SBATCH --gres-flags=enforce-binding
@@ -23,11 +23,11 @@ export PATH="$PATH:/usr/local/cuda-10.0/bin"
 export LD_LIBRARY_PATH="/usr/local/cuda-10.0/lib64"
 export PATH="$PATH:/usr/local/bin/conda"
 
-image_dir=outputs_alpha0.images
+image_dir=hiphop_output/outputs_hh.images
 	
-/zooper2/tinydancer/DanceRevolution/bin/python test.py --input_dir data/valid_1min \
-	--model output/epoch_9.pt \
-	--json_dir outputs_alpha0.01_epoch9 \
+/zooper2/tinydancer/DanceRevolution/bin/python test.py --input_dir data/valid_1min_hiphop \
+	--model trained_models/hiphop/epoch_3000.pt \
+	--json_dir hiphop_output/outputs_hh.epoch3000 \
 	--image_dir ${image_dir} \
 	--batch_size 1
 

@@ -11,11 +11,11 @@ import numpy as np
 from extractor import FeatureExtractor
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--input_audio_dir', type=str, default='data/audio')
-parser.add_argument('--input_dance_dir', type=str, default='data/json')
+parser.add_argument('--input_audio_dir', type=str, default='data/audio/hiphop_1min')
+parser.add_argument('--input_dance_dir', type=str, default='data/json/hiphop_1min')
 
-parser.add_argument('--train_dir', type=str, default='data/train4')
-parser.add_argument('--test_dir', type=str, default='data/test4')
+parser.add_argument('--train_dir', type=str, default='data/train_hiphop_new')
+parser.add_argument('--test_dir', type=str, default='data/test_hiphop_new')
 
 parser.add_argument('--sampling_rate', type=int, default=15360)
 args = parser.parse_args()
@@ -27,7 +27,7 @@ if not os.path.exists(args.train_dir):
 if not os.path.exists(args.test_dir):
     os.mkdir(args.test_dir)
 
-
+print('HI THERE')
 
 def extract_acoustic_feature(input_audio_dir):
     print('---------- Extract features from raw audio ----------')
@@ -199,15 +199,16 @@ def save(args, musics, dances, inner_dir):
 
 
 if __name__ == '__main__':
-    music_dirs = os.listdir(args.input_audio_dir)
-    dance_dirs = os.listdir(args.input_dance_dir)
-    for music_dir in music_dirs:
-        if music_dir in dance_dirs and music_dir != ".DS_Store":
-      
-            musics = extract_acoustic_feature(os.path.join(args.input_audio_dir, music_dir))
-            dances = load_dance_data(os.path.join(args.input_dance_dir, music_dir),
+    # music_dirs = os.listdir(args.input_audio_dir)
+    # dance_dirs = os.listdir(args.input_dance_dir)
+    # for music_dir in music_dirs:
+        #if music_dir in dance_dirs and music_dir != ".DS_Store":
+            #print(music_dir)
+    musics = extract_acoustic_feature(args.input_audio_dir)
+    print('Herro')
+    dances = load_dance_data(args.input_dance_dir,
                              remove_face_keypoints=False,
                              remove_hand_keypoints=False)
 
-            musics, dances = align(musics, dances)
-            save(args, musics, dances, music_dir)
+    musics, dances = align(musics, dances)
+    save(args, musics, dances, music_dir)

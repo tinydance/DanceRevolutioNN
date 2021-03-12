@@ -57,22 +57,24 @@ def train(model, training_data, validation_data, optimizer, device, args, log):
         # epoch_loss = 0
         for batch_i, batch in enumerate(training_data):
             # prepare data
-            src_seq, src_pos, tgt_seq = map(lambda x: x.to(device), batch)
-            gold_seq = tgt_seq[:, 1:]
-            src_seq = src_seq[:, :-1]
-            src_pos = src_pos[:, :-1]
-            tgt_seq = tgt_seq[:, :-1]
+            # Only training for hiphop part
+            if batch[0] == "h":
+                src_seq, src_pos, tgt_seq = map(lambda x: x.to(device), batch)
+                gold_seq = tgt_seq[:, 1:]
+                src_seq = src_seq[:, :-1]
+                src_pos = src_pos[:, :-1]
+                tgt_seq = tgt_seq[:, :-1]
 
-            hidden, out_frame = model.init_decoder_hidden(tgt_seq.size(0))
+                hidden, out_frame = model.init_decoder_hidden(tgt_seq.size(0))
 
-            # forward
-            optimizer.zero_grad()
+                # forward
+                optimizer.zero_grad()
 
-            output = model(src_seq, src_pos, tgt_seq, hidden, out_frame, epoch_i)
+                output = model(src_seq, src_pos, tgt_seq, hidden, out_frame, epoch_i)
 
-            # backward
-            loss = criterion(output, gold_seq)
-            loss.backward()
+                # backward
+                loss = criterion(output, gold_seq)
+                loss.backward()
 
             '''
             for name,para in model.named_parameters():
@@ -81,34 +83,33 @@ def train(model, training_data, validation_data, optimizer, device, args, log):
                     print(torch.mean(para.grad))
             '''
 
-            # grad_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1)
-            # print(grad_norm)
+                # grad_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1)
+                # print(grad_norm)
 
-            # update parameters
-            optimizer.step()
+                # update parameters
+                optimizer.step()
 
-            stats = {
+                stats = {
                 'updates': updates,
                 'loss': loss.item()
             }
-            log.update(stats)
-            updates += 1
+                log.update(stats)
+                updates += 1
 
-        # scheduler.step(loss)
-        valid_stats = valid(model, criterion, validation_data, device)
-        log.log_eval(valid_stats)
-        valid_losses.append(valid_stats['valid_loss'])
+            # scheduler.step(loss)
+            valid_stats = valid(model, criterion, validation_data, device)
+            log.log_eval(valid_stats)
+            valid_losses.append(valid_stats['valid_loss'])
 
-        checkpoint = {
+            checkpoint = {
             'model': model.state_dict(),
             'args': args,
             'epoch': epoch_i
         }
 
-        if epoch_i % args.save_per_epochs == 0 or epoch_i == 1:
-            filename = os.path.join(args.output_dir, f'epoch_{epoch_i}.pt')
-            torch.save(checkpoint, filename)
-
+            if epoch_i % args.save_per_epochs == 0 or epoch_i == 1:
+                filename = os.path.join(args.output_dir, f'epoch_{epoch_i}.pt')
+                torch.save(checkpoint, filename)
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -213,7 +214,7 @@ def main():
     # model = nn.DataParallel(model).to(device)
     model = model.to(device)
 
-    #optimizer = optim.Adam(filter(lambda x: x.requires_grad, model.module.parameters()), lr=args.lr)
+    # optimizer = optim.Adam(filter(lambda x: x.requires_grad, model.module.parameters()), lr=args.lr)
     optimizer = optim.Adam(filter(lambda x: x.requires_grad, model.parameters()), lr=args.lr)
     # scheduler = ReduceLROnPlateau(
     #     optimizer, mode='min', factor=0.8, patience=30, verbose=True, min_lr=1e-06, eps=1e-07)

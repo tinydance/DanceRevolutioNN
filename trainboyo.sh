@@ -1,12 +1,12 @@
 #!/bin/bash
 #
 #SBATCH --job-name=DANCE_REVOLUTION
-#SBATCH --output=/zooper2/tinydancer/DanceRevolution/pretraining_test_log.txt
-#SBATCH --gres=gpu:1
+#SBATCH --output=/zooper2/tinydancer/DanceRevolution/train_log/full_model2.txt
+#SBATCH --gres=gpu:3
 #SBATCH --ntasks=1
 #SBATCH --gres-flags=enforce-binding
 #SBATCH --nodes=1-1
-#SBATCH --mem=2gb
+#SBATCH --mem=32gb
 
 #This is a sample SLURM job script
 #It has a job name called JOB_NAME
@@ -25,9 +25,9 @@ export PATH="$PATH:/usr/local/cuda-10.0/bin"
 export LD_LIBRARY_PATH="/usr/local/cuda-10.0/lib64"
 export PATH="$PATH:/usr/local/bin/conda"
 
-/zooper2/tinydancer/DanceRevolution/bin/python train.py --train_dir /zooper2/tinydancer/DanceRevolution/data/train_1min_2 \
-                --valid_dir /zooper2/tinydancer/DanceRevolution/data/valid_1min_2 \
-                --output_dir /zooper2/tinydancer/DanceRevolution/output \
+/zooper2/tinydancer/DanceRevolution/bin/python train2.py --train_dir /zooper2/tinydancer/DanceRevolution/data/train4 \
+                --test_dir /zooper2/tinydancer/DanceRevolution/data/test4 \
+                --output_dir /zooper2/tinydancer/DanceRevolution/trained_models/full_model \
                 --batch_size 32 \
                 --lr 0.0001 \
                 --dropout 0.05 \
@@ -42,7 +42,6 @@ export PATH="$PATH:/usr/local/bin/conda"
                 --window_size 100 \
                 --fixed_step 10 \
                 --alpha 0.01 \
-                --save_per_epochs 1
-		--pretrained_path /zooper2/tinydancer/DanceRevolution/trained_models/ballet_only/epoch_9990.pt
-		--epochs 1
+                --save_per_epochs 1000 \
+		--epochs 10000
 
